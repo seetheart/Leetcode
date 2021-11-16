@@ -1,0 +1,14 @@
+class Solution {
+public:
+    bool isUnivalTree(TreeNode* root) {
+        return solve(root,root->val);
+    }
+    
+    bool solve(TreeNode * root,int data)
+    {
+        if(root==NULL) return true;
+        if(root->val!=data)return false;
+        return(solve(root->left,data)&&solve(root->right,data));
+        
+    }
+};

@@ -1,0 +1,42 @@
+//we cannot simply swap the left and right children using
+inorder traversal because it after root node is reached then again
+ it will swap the left subtree which we have already inverted.
+// we need to use breadth first.
+
+//Can be solved using preoder traversal 
+
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root==NULL)return root;
+        queue<TreeNode*> q;
+        q.push(root);
+        while(!q.empty())
+        {
+            TreeNode * curr=q.front();
+            q.pop();
+            if(curr->left!=NULL) q.push(curr->left);
+            if(curr->right!=NULL) q.push(curr->right);
+            
+            TreeNode *temp=curr->right;
+            curr->right=curr->left;
+            curr->left=temp;
+            
+        }
+        return root;
+        
+    }
+};
+
+
+//Using DFS recursive
+TreeNode* invertTree(TreeNode* root) {
+        if(!root)
+            return NULL;
+        TreeNode *tmp=root->left;
+        root->left = invertTree(root->right);
+        root->right = invertTree(tmp);
+        return root;
+    }
+
+
