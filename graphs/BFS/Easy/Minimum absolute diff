@@ -18,3 +18,33 @@ public:
         
       
 };
+
+//another method without vector
+class Solution {
+  int x=-1;
+  int mn=INT_MAX;
+public:
+        int getMinimumDifference(TreeNode* root) {
+      inorder(root);
+      return mn;
+    }
+  
+    void inorder(TreeNode* root){
+      
+      if(!root)
+        return ;
+      
+      inorder(root->left);
+      
+      if(x==-1)
+        x=root->val;
+      
+      else{
+        mn=min(mn,root->val - x);
+        x=root->val;
+      }
+      
+      inorder(root->right);
+    }
+  
+};
