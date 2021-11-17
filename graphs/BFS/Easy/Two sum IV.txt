@@ -1,0 +1,17 @@
+// maintaining a map and traversing the whole tree. If (k- root->val)
+   is already inside the map then sum exists.
+
+class Solution {
+public:
+    unordered_map<int,int> m;
+    bool findTarget(TreeNode* root, int k) {
+        if(root==NULL) return false;
+        if(m[k-root->val]==1)return true;
+        
+        m[root->val]=1;
+        return(findTarget(root->left,k)|| findTarget(root->right,k));
+        
+        
+        
+    }
+};

@@ -1,0 +1,29 @@
+  // we will count the number of times the cell is invalid because that will be counted
+    as a perimeter. 
+
+  int vis[110][110];
+    int perimeter = 0;
+    void dfs(int i,int j,int n,int m,vector<vector<int>>& grid) {
+        if(i < 0 || j < 0 || i >= n || j >= m || grid[i][j] == 0) {
+            perimeter++;
+            return;
+        }
+        if(vis[i][j]) return;
+        vis[i][j] = 1;
+        dfs(i-1,j,n,m,grid);
+        dfs(i+1,j,n,m,grid);
+        dfs(i,j-1,n,m,grid);
+        dfs(i,j+1,n,m,grid);
+    }
+    int islandPerimeter(vector<vector<int>>& grid) {
+        memset(vis,0,sizeof(vis));
+        int n = grid.size();
+        int m = grid[0].size();
+        for(int i=0;i<n;i++) {
+            for(int j=0;j<m;j++) {
+                if(grid[i][j] == 1 && !vis[i][j])
+                    dfs(i,j,n,m,grid);
+            }
+        }
+        return perimeter;
+    }
