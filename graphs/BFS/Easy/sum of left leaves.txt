@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int summ=0;
+    int sumOfLeftLeaves(TreeNode* root) {
+      
+        solve(root,-1);
+        return summ;
+    }
+    
+    void solve(TreeNode *root, int direction)
+    {   if(root==NULL) return;
+        if(root->left==NULL && root->right==NULL)
+        {
+            if(direction==0)summ+=root->val;
+            return;
+        }
+        solve(root->left,0);// 0 for identifying left direction
+        solve(root->right,1);// 1 for identifying right direction
+    }
+        
+};
