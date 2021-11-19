@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int minDepth(TreeNode* root) {
+        if(root==NULL) return 0;
+        
+        int left=minDepth(root->left);
+        int right=minDepth(root->right);
+        
+        if(left==0 ||right ==0)return 1+max(left,right); // if left or right subtree is null then we don't want to return 0 but the otherone.
+        return 1+min(left,right);
+    }
+    
+
+};
