@@ -1,0 +1,22 @@
+class Solution {
+public:
+    TreeNode* getTargetCopy(TreeNode* original, TreeNode* cloned, TreeNode* target) {
+        
+        
+        queue<TreeNode*> q;
+        q.push(cloned);
+        TreeNode* res;
+        
+        while(!q.empty())
+        {
+            TreeNode* curr;
+            curr=q.front();
+            q.pop();
+            if(curr->val==target->val)res=curr; // if node found in cloned tree then equate result to this node.
+            if(curr->left!=NULL)q.push(curr->left);
+            if(curr->right!=NULL)q.push(curr->right);
+            
+        }
+        return res;
+    }
+};
