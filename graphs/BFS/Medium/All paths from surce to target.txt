@@ -1,0 +1,31 @@
+class Solution {
+    vector<vector<int>> ans;
+    vector<int> visited;
+    int n;
+public:
+    void backtracking(vector<vector<int>>& graph, int node, vector<int> &path){
+        if (node == n - 1){
+            path.push_back(n - 1);
+            ans.push_back(path);
+            path.pop_back();
+            return;
+        }
+        if (visited[node])  
+            return;
+        visited[node] = true;
+        path.push_back(node);
+        for (auto next_node : graph[node]){
+            backtracking(graph, next_node, path);
+        }
+        path.pop_back();
+        visited[node] = false;
+    }
+
+    vector<vector<int>> allPathsSourceTarget(vector<vector<int>>& graph) {
+        n = graph.size();
+        visited.resize(n, false);
+        vector<int> path;
+        backtracking(graph, 0, path);
+        return ans;
+    }
+};

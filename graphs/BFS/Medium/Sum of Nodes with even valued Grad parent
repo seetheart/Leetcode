@@ -1,0 +1,28 @@
+class Solution {
+public:
+    int summ=0;
+    int sumEvenGrandparent(TreeNode* root) {
+        
+        solve(root,-1);
+        return summ;
+    }
+    
+    void solve(TreeNode* root, int par)
+    {
+        if(root==NULL)return;
+        
+        if(root->left)
+        {   if(par%2==0)
+            summ+=root->left->val;
+            solve(root->left,root->val);
+        }
+        if(root->right)
+        {   if(par%2==0)
+            summ+=root->right->val;
+            solve(root->right,root->val);
+        }
+        
+        
+        
+    }
+};
