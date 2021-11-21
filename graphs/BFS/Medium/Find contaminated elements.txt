@@ -1,0 +1,23 @@
+class FindElements {
+    unordered_set<int>st;
+    void recoverTree(TreeNode* root, int val)
+    {
+        if(root==NULL)
+            return;
+        
+        root->val=val;
+        st.insert(val);
+        recoverTree(root->left, 2*val+1);
+        recoverTree(root->right, 2*val+2);
+    }
+public:
+    FindElements(TreeNode* root) {
+        recoverTree(root,0);
+    }
+    
+    bool find(int target) {
+        if(st.find(target)!=st.end())
+            return true;
+        return false;
+    }
+};

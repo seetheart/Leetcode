@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int res;
+    int goodNodes(TreeNode* root) {
+        
+        solve(root,root->val);
+        return res;
+        
+    }
+    void solve(TreeNode * root, int max_val)
+    {
+        if(root==NULL)return;
+        if(root->val >=max_val)
+        {
+            max_val=root->val;
+            res++;
+        }
+        solve(root->left,max_val);
+        
+        
+        solve(root->right,max_val);
+    }
+};
